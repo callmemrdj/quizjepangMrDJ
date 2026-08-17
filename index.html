@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#1e3a8a" />
+    <title>日本語クイズ — Quiz Kosakata Bahasa Jepang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Media pendukung soal: gambar & audio */
+      .q-media {
+        margin: 14px 0;
+      }
+      .q-media:empty {
+        display: none;
+      }
+      .q-image {
+        display: block;
+        max-width: 100%;
+        max-height: 260px;
+        width: auto;
+        margin: 0 auto;
+        border-radius: 14px;
+        object-fit: contain;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+      }
+      .q-audio-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .q-audio-hint {
+        font-size: 0.85rem;
+        color: #475569;
+        font-weight: 500;
+      }
+      .q-audio-wrap audio {
+        width: 100%;
+        max-width: 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bubble-container"></div>
+    <div id="app">
+      <!-- ============ SCREEN 1: START ============ -->
+      <section id="screen-start" class="screen active">
+        <div class="torii">⛩️</div>
+        <div class="brand-jp">日本語 の クイズ</div>
+        <h2 class="brand-title">Quiz<br />Bahasa Jepang Mr.DJ</h2>
+        <p class="brand-sub">Uji kemampuanmu lewat soal pilihan ganda dari 4 jenis: Kosakata, Tatabahasa, Pendengaran, dan Bacaan. Bersiaplah, waktu terus berjalan!</p>
+        <div class="stat-chip-row">
+          <div class="stat-chip">📚 65 Soal</div>
+          <div class="stat-chip">🗂️ 4 Kategori</div>
+          <div class="stat-chip">⏱️ 65 Menit</div>
+        </div>
+        <div class="field">
+          <label for="input-name">Siapa namamu?</label>
+          <input id="input-name" type="text" placeholder="Tulis namamu panggilan..." maxlength="30" autocomplete="off" />
+        </div>
+        <button class="btn-primary" id="btn-start">🚀 Mulai Quiz</button>
+        <div class="foot-note">Setiap kali quiz dimulai, urutan soal akan diacak ulang.</div>
+      </section>
+
+      <!-- ============ SCREEN 2: QUIZ ============ -->
+      <section id="screen-quiz" class="screen">
+        <div class="quiz-header">
+          <div class="hello-name">Halo, <b id="quiz-username">-</b> 👋</div>
+          <div class="timer-wrap">
+            <svg viewBox="0 0 58 58">
+              <circle class="timer-track" cx="29" cy="29" r="24"></circle>
+              <circle class="timer-bar" id="timer-bar" cx="29" cy="29" r="24"></circle>
+            </svg>
+            <div class="timer-text" id="timer-text">00:00</div>
+          </div>
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+        <div class="progress-line"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-text" id="progress-text">Terjawab 0/32</div>
+
+        <div class="q-card">
+          <div class="q-eyebrow"><span id="q-cat-icon">📚</span><span id="q-cat-label">KOSAKATA</span> · Soal <span id="q-index-label">1/8</span></div>
+          <div class="q-text" id="q-text">-</div>
+          <div class="q-media" id="q-media"></div>
+          <div id="options-wrap"></div>
+        </div>
+
+        <div class="nav-row">
+          <button class="nav-back" id="btn-back">← Kembali</button>
+          <button class="nav-next" id="btn-next">Lanjut →</button>
+        </div>
+
+        <button class="toggle-nums" id="toggle-nums"><span>☰ Navigasi Nomor Soal</span><span id="toggle-icon">▾</span></button>
+        <div class="num-grid" id="num-grid"></div>
+
+        <button class="submit-btn" id="btn-submit">✅ Selesai & Kirim Jawaban</button>
+      </section>
+
+      <!-- ============ SCREEN 3: RESULT ============ -->
+      <section id="screen-result" class="screen">
+        <div class="result-hero">
+          <div class="score-ring" id="score-ring">
+            <div class="score-inner">
+              <span class="score-num" id="score-num">0%</span>
+              <span class="score-sub" id="score-frac">0/32 Benar</span>
+            </div>
+          </div>
+          <div class="result-name" id="result-name">-</div>
+          <div class="result-msg" id="result-msg">-</div>
+        </div>
+
+        <div class="cat-breakdown" id="cat-breakdown"></div>
+
+        <button class="review-toggle-btn" id="review-toggle-btn"><span id="review-toggle-label">📋 Tampilkan Review Jawaban</span><span class="chev">▾</span></button>
+        <div class="review-panel" id="review-panel"></div>
+
+        <button class="btn-primary restart-btn" id="btn-restart">🔄 Main Lagi</button>
+      </section>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="soal/soaltes.js"></script>
+  </body>
+</html>
